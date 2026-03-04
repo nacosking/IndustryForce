@@ -52,13 +52,13 @@
     aria-label="Navigation menu"
   >
     <nav class="mobile-nav" aria-label="Mobile navigation">
-      <a class="mobile-nav-link" href="/">Home</a>
-      <a class="mobile-nav-link" href="/about">About</a>
-      <a class="mobile-nav-link" href="/services">Services</a>
-      <a class="mobile-nav-link" href="/industries">Industries &amp; Roles</a>
-      <a class="mobile-nav-link" href="/process">Process</a>
-      <a class="mobile-nav-link" href="/contact">Contact</a>
-      <a class="mobile-nav-cta" href="/contact">Get in Touch</a>
+      <a class="mobile-nav-link" href="../html/Home.html">Home</a>
+      <a class="mobile-nav-link" href="../html/About.html">About</a>
+      <a class="mobile-nav-link" href="../html/Services.html">Services</a>
+      <a class="mobile-nav-link" href="../html/Industries.html">Industries &amp; Roles</a>
+      <a class="mobile-nav-link" href="../html/Process.html">Process</a>
+      <a class="mobile-nav-link" href="../html/contact.html">Contact</a>
+      <a class="mobile-nav-cta" href="../html/contact.html">Get in Touch</a>
     </nav>
   </div>
 </header>

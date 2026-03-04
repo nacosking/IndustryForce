@@ -111,19 +111,19 @@ function initializeMobileMenu() {
  * Detects the current page and adds 'active' class to matching nav links
  */
 function setActiveNavLink() {
-  // Get current page filename from URL
-  const currentPage = window.location.pathname.split('/').pop() || 'Home.html';
+  // Get current page filename from URL (case-insensitive)
+  const currentPage = (window.location.pathname.split('/').pop() || 'Home.html').toLowerCase();
   
   // Select all navigation links (both desktop and mobile)
   const allNavLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
   
   allNavLinks.forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop();
+    const linkPage = link.getAttribute('href').split('/').pop().toLowerCase();
     
     // Add 'active' class if the link matches current page
     if (linkPage === currentPage || 
-        (currentPage === '' && linkPage === 'Home.html') ||
-        (currentPage === 'Home.html' && linkPage === 'Home.html')) {
+        (currentPage === '' && linkPage === 'home.html') ||
+        (currentPage === 'home.html' && linkPage === 'home.html')) {
       link.classList.add('active');
     }
   });
