@@ -1,0 +1,335 @@
+/* ============================================================
+   Services Page Styles - PrecisionForce
+   Page-specific styles only. Base/shared styles in style.css
+   ============================================================ */
+
+/* Services Page Color Variables (page-specific color scheme) */
+:root {
+  --navy:     #0e1c2f;
+  --navy-mid: #162640;
+  --gold:     #e8993a;
+  --steel:    #8fa3bc;
+  --surface:  #ffffff;
+  --bg-alt:   #f7f9fc;
+  --text:     #0e1c2f;
+  --text-sub: #5a7090;
+  --border:   #e8edf3;
+}
+
+/* ============================================================
+   HERO SECTION (dark background)
+   ============================================================ */
+.page-hero {
+  position: relative;
+  background: var(--navy-mid);
+  padding: 5.5rem 2rem 5rem;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: ''; 
+  position: absolute; 
+  inset: 0;
+  background: radial-gradient(ellipse 55% 90% at 85% 50%, rgba(232,153,58,0.06) 0%, transparent 70%);
+}
+
+.hero-inner {
+  position: relative; 
+  z-index: 1;
+  max-width: 80rem; 
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s ease forwards;
+}
+
+/* Services page hero eyebrow (scoped to hero) */
+.page-hero .eyebrow {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.5rem;
+  font-size: 0.68rem; 
+  font-weight: 600;
+  text-transform: uppercase; 
+  letter-spacing: 0.25em;
+  color: var(--gold); 
+  margin-bottom: 1.1rem;
+}
+
+.page-hero .eyebrow::before {
+  content: ''; 
+  width: 20px; 
+  height: 2px; 
+  background: var(--gold); 
+  display: block;
+}
+
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; 
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
+  text-transform: uppercase; 
+  line-height: 1.05;
+  color: #f4f6f9; 
+  max-width: 580px;
+}
+
+.hero-title em { 
+  font-style: normal; 
+  color: var(--gold); 
+}
+
+.hero-sub {
+  margin-top: 1.25rem; 
+  color: var(--steel);
+  font-size: 1rem; 
+  max-width: 440px; 
+  line-height: 1.7;
+}
+
+/* ============================================================
+   SERVICES SECTION (white background)
+   ============================================================ */
+.services-section { 
+  background: var(--surface); 
+  padding: 4.5rem 2rem; 
+}
+
+.services-inner { 
+  max-width: 72rem; 
+  margin: 0 auto; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 2rem; 
+}
+
+.service-row {
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+  min-height: 380px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(14,28,47,0.06);
+  transition: box-shadow 0.25s;
+  opacity: 0; 
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.service-row:hover {
+  box-shadow: 0 6px 32px rgba(14,28,47,0.11), 0 0 0 1px rgba(232,153,58,0.2);
+}
+
+.service-row:nth-child(1) { animation-delay: 0.05s; }
+.service-row:nth-child(2) { animation-delay: 0.12s; }
+.service-row:nth-child(3) { animation-delay: 0.19s; }
+.service-row:nth-child(4) { animation-delay: 0.26s; }
+.service-row:nth-child(5) { animation-delay: 0.33s; }
+
+.service-row.reverse .visual-panel { 
+  order: 2; 
+}
+
+.service-row.reverse .content-panel { 
+  order: 1; 
+}
+
+/* ── VISUAL PANEL ── */
+.visual-panel {
+  position: relative; 
+  overflow: hidden;
+  background: var(--bg-alt);
+}
+
+.visual-panel svg {
+  position: absolute; 
+  inset: 0; 
+  width: 100%; 
+  height: 100%;
+}
+
+/* ── CONTENT PANEL ── */
+.content-panel {
+  padding: 3rem 2.75rem;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.service-row.reverse .content-panel { 
+  border-left: none; 
+  border-right: 1px solid var(--border); 
+}
+
+.service-tag {
+  font-size: 0.62rem; 
+  font-weight: 600;
+  text-transform: uppercase; 
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.service-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.7rem; 
+  font-weight: 700;
+  text-transform: uppercase; 
+  letter-spacing: 0.02em;
+  color: var(--text); 
+  line-height: 1.15;
+  margin-bottom: 0.85rem;
+}
+
+.service-desc {
+  color: var(--text-sub); 
+  font-size: 0.9rem;
+  line-height: 1.75; 
+  margin-bottom: 1.75rem;
+  max-width: 380px;
+}
+
+.includes-label {
+  font-size: 0.6rem; 
+  font-weight: 600;
+  text-transform: uppercase; 
+  letter-spacing: 0.2em;
+  color: #b0bfcf; 
+  margin-bottom: 0.65rem;
+}
+
+.includes-list {
+  list-style: none;
+  display: flex; 
+  flex-direction: column; 
+  gap: 0.35rem;
+}
+
+.includes-list li {
+  font-size: 0.82rem; 
+  color: var(--text-sub);
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem;
+}
+
+.includes-list li::before {
+  content: '';
+  width: 4px; 
+  height: 4px; 
+  border-radius: 50%;
+  background: var(--gold); 
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   CTA SECTION (dark background)
+   ============================================================ */
+.cta-section {
+  position: relative; 
+  background: var(--navy-mid);
+  padding: 5rem 2rem; 
+  text-align: center; 
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: ''; 
+  position: absolute; 
+  inset: 0;
+  background: radial-gradient(ellipse 50% 120% at 50% 110%, rgba(232,153,58,0.07) 0%, transparent 65%);
+}
+
+.cta-inner { 
+  position: relative; 
+  z-index: 1; 
+}
+
+.cta-section h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1.9rem, 3.5vw, 2.75rem); 
+  font-weight: 800;
+  text-transform: uppercase; 
+  letter-spacing: 0.02em;
+  color: #f4f6f9; 
+  margin-bottom: 0.85rem;
+}
+
+.cta-section p {
+  color: var(--steel); 
+  font-size: 0.95rem;
+  margin-bottom: 2.25rem; 
+  max-width: 34rem;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+/* Services page CTA button */
+.cta-section .btn {
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.45rem;
+  background: var(--gold); 
+  color: var(--navy);
+  font-family: 'DM Sans', sans-serif; 
+  font-size: 0.82rem; 
+  font-weight: 700;
+  text-transform: uppercase; 
+  letter-spacing: 0.1em;
+  padding: 0.8rem 1.75rem; 
+  border-radius: 2px; 
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.cta-section .btn:hover { 
+  background: #f5b563; 
+  transform: translateY(-1px); 
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes fadeUp { 
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  } 
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 768px) {
+  .service-row { 
+    grid-template-columns: 1fr; 
+    min-height: auto; 
+  }
+  
+  .visual-panel { 
+    min-height: 220px; 
+    border-right: 1px solid var(--border) !important; 
+    border-left: 1px solid var(--border) !important; 
+    border-bottom: none; 
+  }
+  
+  .content-panel { 
+    border: 1px solid var(--border) !important; 
+    border-top: none !important; 
+  }
+  
+  .service-row.reverse .visual-panel { 
+    order: 0; 
+  }
+  
+  .service-row.reverse .content-panel { 
+    order: 1; 
+  }
+  
+  .nav-links { 
+    display: none; 
+  }
+}

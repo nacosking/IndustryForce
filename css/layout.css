@@ -1,0 +1,115 @@
+/* ============================================================
+   SVG / Icon System - Master Styles
+   ============================================================ */
+
+/* 1. SHARED BASE STYLES 
+   This handles 90% of the code for ALL icons. */
+.icon,
+.service-icon,
+.tag-icon,
+.why-icon,
+.why-medal,
+.why-circle,
+.why-sheild,
+.contact-icon,
+.contact-detail-icon-location,
+.contact-detail-icon-phone,
+.contact-detail-icon-email,
+.button-icon,
+.icon-right,
+.clock-icon {
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2; /* Default weight */
+  flex-shrink: 0;
+}
+
+/* 2. SIZING CATEGORIES 
+   Group them by their physical dimensions. */
+
+/* Large (32px) - Why Section & Large Contacts */
+.why-icon,
+.why-medal,
+.why-circle,
+.why-sheild,
+.contact-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 1.25rem;
+  color: #EE9D28;
+}
+
+/* Medium (28px) - Service Cards */
+.service-icon,
+.icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 1rem;
+}
+
+/* Small (20px) - Contact Details (Lighter stroke) */
+.contact-detail-icon-location,
+.contact-detail-icon-phone,
+.contact-detail-icon-email {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.5; /* Lighter weight for smaller size */
+  color: #EE9D28;
+  margin-top: 2px;
+}
+
+/* Extra Small (18px/16px) - Tags, Buttons, Inline */
+.message-icon,
+.button-icon,
+.icon-right {
+  width: 18px;
+  height: 18px;
+}
+
+.tag-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  margin-right: 0.5rem;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  color: #EE9D28;
+}
+
+/* 3. SPECIFIC OVERRIDES 
+   Unique colors or alignments. */
+
+.icon-right {
+  width: 16px;
+  height: 16px;
+  margin-left: 0.5rem;
+}
+
+.tag-icon,
+.wrench-icon,
+.user-icon,
+.globe-icon,
+.audit-icon,
+.precision-icon,
+.medal-icon,
+.welder-icon {
+  color: #EE9D28; /* Overrides the default for tags */
+}
+
+/* 4. LAYOUT HELPERS */
+.contact-detail-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.contact-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
