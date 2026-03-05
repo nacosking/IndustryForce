@@ -2,13 +2,13 @@
   <div class="container-wide header-inner">
 
     <!-- Logo -->
-    <a class="site-logo" href="../html/home.html">
+    <a class="site-logo" href="../html/Home.html">
       MTI<span class="accent-text">Resource</span>
     </a>
 
     <!-- Desktop Navigation (hidden below 1024px) -->
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a class="nav-link" href="../html/home.html">Home</a>
+      <a class="nav-link" href="../html/Home.html">Home</a>
       <a class="nav-link" href="../html/About.html">About</a>
       <a class="nav-link" href="../html/Services.html">Services</a>
       <a class="nav-link" href="../html/Industries.html">Industries &amp; Roles</a>
