@@ -2,18 +2,18 @@
   <div class="container-wide header-inner">
 
     <!-- Logo -->
-    <a class="site-logo" href="../html/Home.html">
-      PRECISION<span class="accent-text">FORCE</span>
+    <a class="site-logo" href="../html/home.html">
+      MTI<span class="accent-text">Resource</span>
     </a>
 
     <!-- Desktop Navigation (hidden below 1024px) -->
     <nav class="desktop-nav" aria-label="Main navigation">
-      <a class="nav-link" href="../html/Home.html">Home</a>
+      <a class="nav-link" href="../html/home.html">Home</a>
       <a class="nav-link" href="../html/About.html">About</a>
       <a class="nav-link" href="../html/Services.html">Services</a>
       <a class="nav-link" href="../html/Industries.html">Industries &amp; Roles</a>
       <a class="nav-link" href="../html/Process.html">Process</a>
-      <a class="nav-cta" href="../html/contact.html">Get in Touch</a>
+      <a class="nav-cta" href="../html/Contact.html">Get in Touch</a>
     </nav>
 
     <!-- Hamburger button (hidden above 1024px) -->
@@ -57,8 +57,7 @@
       <a class="mobile-nav-link" href="../html/Services.html">Services</a>
       <a class="mobile-nav-link" href="../html/Industries.html">Industries &amp; Roles</a>
       <a class="mobile-nav-link" href="../html/Process.html">Process</a>
-      <a class="mobile-nav-link" href="../html/contact.html">Contact</a>
-      <a class="mobile-nav-cta" href="../html/contact.html">Get in Touch</a>
+      <a class="mobile-nav-cta" href="../html/Contact.html">Get in Touch</a>
     </nav>
   </div>
 </header>
