@@ -113,3 +113,22 @@
   align-items: center;
   gap: 8px;
 }
+
+.why-icon-wrap {
+  width: 64px;
+  height: 64px;
+  background-color: rgba(238, 157, 40, 0.1); /* Very light brand orange */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+
+/* The icon inside the wrap inherits your 32px size */
+.why-icon-wrap .why-icon {
+  margin: 0; /* Remove the auto margin since the wrap handles it */
+  width: 32px;
+  height: 32px;
+  color: #EE9D28;
+}
