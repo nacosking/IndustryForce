@@ -1,25 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MTI Resource — Industries</title>
-  <meta name="description" content="Skill-verified workers for UK & European manufacturing. 40 years of combined manufacturing industry and recruitment experience.">
-  <meta name="author" content="MTI Resource">
-  <meta property="og:title" content="MTI Resource">
-  <meta property="og:description" content="Skill-Verified Workers for UK & European Manufacturing">
-  <meta property="og:type" content="website">
-  <link rel="stylesheet" href="../css/style.css">
-  <script src="../javascript/script.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTI Resource | Industries & Roles — Manufacturing Recruitment UK & Europe</title>
+    <meta name="description" content="MTI Resource supplies skilled manufacturing workers to UK and European factories — CNC machinists, toolmakers, welders, maintenance engineers and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages/Industries.css">
+    <script src="../javascript/script.js" defer></script>
 </head>
 <body>
-  <!-- Icon Sprite -->
-  <div style="display:none;">
-    <object data="../asset/icon/icons.svg" type="image/svg+xml"></object>
-  </div>
-
+  <!-- NAV -->
     <div id="header-placeholder"></div>
 
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="eyebrow">Industries & Roles</div>
+      <h1 class="hero-title">Specialist Knowledge Across <em>Manufacturing Sectors</em></h1>
+      <p class="hero-sub">
+        We recruit exclusively for engineering and manufacturing across the UK & Europe. European factories face increasing shortages of skilled industrial workers — we exist to solve that problem.
+      </p>
+      <div class="hero-callout">
+        <svg width="20" height="20"><use href="../asset/icon/icons.svg#icon-alert-circle"></use></svg>
+        <p><strong>Why this matters:</strong> The manufacturing sector across the UK and Europe faces a critical skilled labour shortage. Our technical background means we can identify candidates who genuinely perform — not just those who look good on paper.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDUSTRIES -->
+  <section class="section section--white reveal">
+    <div class="wrap">
+      <div class="section-label">Industries We Serve</div>
+      <h2 class="section-title">Precision-Focused Sectors</h2>
+      <p class="section-sub">Every industry we work in requires technical knowledge most generalist agencies simply don't have. We do.</p>
+
+      <div class="industries-list reveal-stagger">
+
+        <!-- CNC Machining -->
+        <div class="ind-panel open" onclick="togglePanel(this)">
+          <div class="ind-header">
+            <div class="ind-icon">
+              <svg><use href="../asset/icon/icons.svg#icon-gear"></use></svg>
+            </div>
+            <div class="ind-heading">
+              <div class="ind-name">CNC Machining</div>
+              <div class="ind-tagline">Precision turning, milling, and multi-axis machining operations</div>
+            </div>
+            <div class="ind-toggle">
+              <svg><use href="../asset/icon/icons.svg#icon-plus"></use></svg>
+            </div>
+          </div>
+          <div class="ind-body">
+            <div class="ind-body-inner">
+              <p class="ind-desc">
+                We source machinists with genuine hands-on experience across turning, milling, grinding and multi-axis operations. We understand Fanuc, Siemens, and Heidenhain controllers — so we know which candidates are genuinely capable.
+              </p>
+              <div class="ind-skills">
+                <span class="skill-chip">3, 4 & 5-axis</span>
+                <span class="skill-chip">CNC Turning</span>
+                <span class="skill-chip">CNC Milling</span>
+                <span class="skill-chip">Swiss-type Lathes</span>
+                <span class="skill-chip">Manual Machining</span>
+                <span class="skill-chip">CAM Programming</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Precision Engineering -->
+        <div class="ind-panel" onclick="togglePanel(this)">
+          <div class="ind-header">
+            <div class="ind-icon">
+              <svg><use href="../asset/icon/icons.svg#icon-precision"></use></svg>
+            </div>
+            <div class="ind-heading">
+              <div class="ind-name">Precision Engineering</div>
+              <div class="ind-tagline">Tight-tolerance component manufacturing and inspection</div>
+            </div>
+            <div class="ind-toggle">
+              <svg><use href="../asset/icon/icons.svg#icon-plus"></use></svg>
+            </div>
+          </div>
+          <div class="ind-body">
+            <div class="ind-body-inner">
+              <p class="ind-desc">
+                Sub-micron tolerances require more than just machine skills. We look for candidates who understand metrology, inspection protocols, and quality systems — the full picture of precision production.
+              </p>
+              <div class="ind-skills">
+                <span class="skill-chip">Sub-micron Tolerances</span>
+                <span class="skill-chip">CMM Inspection</span>
+                <span class="skill-chip">Jig & Fixture</span>
+                <span class="skill-chip">Gauge Calibration</span>
+                <span class="skill-chip">GD&T</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolmaking & Mould Making -->
+        <div class="ind-panel" onclick="togglePanel(this)">
+          <div class="ind-header">
+            <div class="ind-icon">
+              <svg><use href="../asset/icon/icons.svg#icon-wrench"></use></svg>
+            </div>
+            <div class="ind-heading">
+              <div class="ind-name">Toolmaking & Mould Making</div>
+              <div class="ind-tagline">Tool & die production, injection mould making, metal stamping tooling</div>
+            </div>
+            <div class="ind-toggle">
+              <svg><use href="../asset/icon/icons.svg#icon-plus"></use></svg>
+            </div>
+          </div>
+          <div class="ind-body">
+            <div class="ind-body-inner">
+              <p class="ind-desc">
+                Our founder spent 15+ years in mould making and metal stamping — so this is an area we understand deeply. We know the difference between a capable toolmaker and an exceptional one.
+              </p>
+              <div class="ind-skills">
+                <span class="skill-chip">Tool & Die Making</span>
+                <span class="skill-chip">Injection Moulds</span>
+                <span class="skill-chip">Metal Stamping</span>
+                <span class="skill-chip">EDM / Wire Erosion</span>
+                <span class="skill-chip">Mould Fitting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fabrication & Welding -->
+        <div class="ind-panel" onclick="togglePanel(this)">
+          <div class="ind-header">
+            <div class="ind-icon">
+              <svg><use href="../asset/icon/icons.svg#icon-flame"></use></svg>
+            </div>
+            <div class="ind-heading">
+              <div class="ind-name">Fabrication & Welding</div>
+              <div class="ind-tagline">Structural steel, sheet metal, and welded assemblies</div>
+            </div>
+            <div class="ind-toggle">
+              <svg><use href="../asset/icon/icons.svg#icon-plus"></use></svg>
+            </div>
+          </div>
+          <div class="ind-body">
+            <div class="ind-body-inner">
+              <p class="ind-desc">
+                Welding qualifications tell part of the story. We go further — verifying coded welder certifications and assessing practical capability through structured trade tests before any candidate reaches your shortlist.
+              </p>
+              <div class="ind-skills">
+                <span class="skill-chip">MIG / TIG / MMA</span>
+                <span class="skill-chip">Coded Welders</span>
+                <span class="skill-chip">Sheet Metal</span>
+                <span class="skill-chip">Structural Steel</span>
+                <span class="skill-chip">Pipe Welding</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manufacturing Lines -->
+        <div class="ind-panel" onclick="togglePanel(this)">
+          <div class="ind-header">
+            <div class="ind-icon">
+              <svg><use href="../asset/icon/icons.svg#icon-factory"></use></svg>
+            </div>
+            <div class="ind-heading">
+              <div class="ind-name">Manufacturing Lines</div>
+              <div class="ind-tagline">Production line operation, assembly, and process control</div>
+            </div>
+            <div class="ind-toggle">
+              <svg><use href="../asset/icon/icons.svg#icon-plus"></use></svg>
+            </div>
+          </div>
+          <div class="ind-body">
+            <div class="ind-body-inner">
+              <p class="ind-desc">
+                High-volume production environments demand workers who understand pace, quality control and continuous improvement. We source operators and technicians who can hit the ground running.
+              </p>
+              <div class="ind-skills">
+                <span class="skill-chip">Lean Manufacturing</span>
+                <span class="skill-chip">Six Sigma</span>
+                <span class="skill-chip">Production Assembly</span>
+                <span class="skill-chip">Continuous Improvement</span>
+                <span class="skill-chip">Quality Control</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Maintenance -->
+        <div class="ind-panel" onclick="togglePanel(this)">
+          <div class="ind-header">
+            <div class="ind-icon">
+              <svg><use href="../asset/icon/icons.svg#icon-settings"></use></svg>
+            </div>
+            <div class="ind-heading">
+              <div class="ind-name">Maintenance & Engineering</div>
+              <div class="ind-tagline">Preventive and reactive maintenance of industrial equipment</div>
+            </div>
+            <div class="ind-toggle">
+              <svg><use href="../asset/icon/icons.svg#icon-plus"></use></svg>
+            </div>
+          </div>
+          <div class="ind-body">
+            <div class="ind-body-inner">
+              <p class="ind-desc">
+                Factory downtime costs money. We source multi-skilled maintenance engineers and industrial electricians who understand plant equipment, not just textbook maintenance principles.
+              </p>
+              <div class="ind-skills">
+                <span class="skill-chip">Planned Maintenance</span>
+                <span class="skill-chip">Breakdown Response</span>
+                <span class="skill-chip">Multi-skilled</span>
+                <span class="skill-chip">Industrial Electrical</span>
+                <span class="skill-chip">Hydraulics / Pneumatics</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /industries-list -->
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="section section--muted reveal" id="roles">
+    <div class="wrap">
+      <div class="roles-header">
+        <div>
+          <div class="section-label">Roles We Source</div>
+          <h2 class="section-title">From Operators to Senior Management</h2>
+        </div>
+        <p class="roles-header-desc">
+          Every candidate is assessed against structured competency frameworks — trade-tested and skill-graded before they reach your shortlist.
+        </p>
+      </div>
+
+      <div class="roles-grid">
+
+        <!-- Production -->
+        <div class="role-col">
+          <div class="role-col-label">Production</div>
+          <div class="role-list">
+            <div class="role-item">
+              <span class="role-name">CNC Machinist</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Toolmaker</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Tool & Die Maker</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Welder / Fabricator</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Fitter</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Metal Stamping Tech</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Machine Operator</span>
+              <span class="role-badge badge--semiskilled">Semi-Skilled</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical -->
+        <div class="role-col">
+          <div class="role-col-label">Technical</div>
+          <div class="role-list">
+            <div class="role-item">
+              <span class="role-name">Maintenance Engineer</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Industrial Electrician</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Quality Inspector</span>
+              <span class="role-badge badge--specialist">Specialist</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Production Technician</span>
+              <span class="role-badge badge--specialist">Specialist</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">CAM Programmer</span>
+              <span class="role-badge badge--specialist">Specialist</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Mould Setter</span>
+              <span class="role-badge badge--skilled">Skilled</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Management -->
+        <div class="role-col">
+          <div class="role-col-label">Management</div>
+          <div class="role-list">
+            <div class="role-item">
+              <span class="role-name">Production Supervisor</span>
+              <span class="role-badge badge--senior">Senior</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Production Manager</span>
+              <span class="role-badge badge--senior">Senior</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Engineering Manager</span>
+              <span class="role-badge badge--senior">Senior</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Technical Lead</span>
+              <span class="role-badge badge--senior">Senior</span>
+            </div>
+            <div class="role-item">
+              <span class="role-name">Quality Manager</span>
+              <span class="role-badge badge--senior">Senior</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /roles-grid -->
+
+      <p class="roles-note">Don't see the exact role you need? We cover a wide range of engineering disciplines — <a href="#contact">get in touch and tell us what you're looking for</a>.</p>
+
+    </div>
+  </section>
+
+  <!-- COUNTRIES -->
+  <section class="section section--primary reveal">
+    <div class="wrap">
+      <div class="countries-inner">
+
+        <div>
+          <div class="section-label">Coverage</div>
+          <h2 class="section-title">Manufacturing Recruitment Across the UK & Europe</h2>
+          <p class="section-sub">
+            We support manufacturing companies across the UK and Europe facing skilled labour shortages. One point of contact, cross-border capability.
+          </p>
+
+          <div class="country-list">
+            <div class="country-item"><span class="country-flag">🇬🇧</span> United Kingdom</div>
+            <div class="country-item"><span class="country-flag">🇮🇪</span> Ireland</div>
+            <div class="country-item"><span class="country-flag">🇩🇪</span> Germany</div>
+            <div class="country-item"><span class="country-flag">🇳🇱</span> Netherlands</div>
+            <div class="country-item"><span class="country-flag">🇵🇱</span> Poland</div>
+            <div class="country-item"><span class="country-flag">🇨🇿</span> Czech Republic</div>
+          </div>
+        </div>
+
+        <div class="trust-block">
+          <div class="trust-block-title">Manufacturing-Focused Recruitment</div>
+          <p>
+            Unlike general recruitment agencies, MTI Resource focuses exclusively on manufacturing and engineering roles. That's all we do — and it's what makes us different.
+          </p>
+          <p>
+            Our industry background means we understand production environments, machining processes, and the practical skills required on the factory floor. We evaluate candidates the way a production engineer would — not a generalist recruiter.
+          </p>
+          <p>
+            This ensures we present employers with candidates who are ready to perform in real manufacturing operations from day one.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-band reveal" id="contact">
+    <div class="cta-inner">
+      <div>
+        <h2 class="cta-title">Need a Specific Role Filled?</h2>
+        <p class="cta-sub">Tell us what you're looking for — skilled operator or senior manager — and we'll outline how we can help. No obligation.</p>
+      </div>
+      <a href="../html/Contact.html" class="btn-primary">
+        Get in Touch
+        <svg><use href="../asset/icon/icons.svg#icon-arrow-long-right"></use></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
     <div id="footer-placeholder"></div>
+
+  <script>
+    // Panel toggle
+    function togglePanel(el) {
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.ind-panel').forEach(p => p.classList.remove('open'));
+      if (!isOpen) el.classList.add('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal, .reveal-stagger');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.07 });
+    reveals.forEach(el => io.observe(el));
+  </script>
+
 </body>
 </html>
