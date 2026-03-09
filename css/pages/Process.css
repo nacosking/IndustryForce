@@ -216,6 +216,7 @@
 }
 .node-desc {
   font-size: 0.84rem; color: var(--text-sub); line-height: 1.7;
+  text-align: justify;
 }
 
 /* right-aligned card text tweaks */
