@@ -11,7 +11,7 @@
 }
 
 .section-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
   font-size: 1.875rem;
   color: hsl(var(--foreground));
@@ -60,7 +60,7 @@ header.site-header .header-inner {
 }
 
 .site-logo {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   color: hsl(var(--primary-foreground));
@@ -81,6 +81,7 @@ header.site-header .header-inner {
 
 .nav-link {
   padding: 0.5rem 1rem;
+  font-family: 'Barlow', sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
   border-radius: 0.25rem;
@@ -99,6 +100,7 @@ header.site-header .header-inner {
 .nav-cta {
   margin-left: 1rem;
   padding: 0.625rem 1.25rem;
+  font-family: 'Barlow', sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   background-color: hsl(var(--accent));
@@ -177,6 +179,7 @@ header.site-header .header-inner {
 .mobile-nav-link {
   display: block;
   padding: 0.875rem 1rem;
+  font-family: 'Barlow', sans-serif;
   font-size: 1rem;
   font-weight: 500;
   color: hsl(var(--primary-foreground) / 0.85);
@@ -203,6 +206,7 @@ header.site-header .header-inner {
   display: block;
   margin-top: 1rem;
   padding: 0.875rem 1rem;
+  font-family: 'Barlow', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   text-align: center;

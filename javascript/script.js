@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   console.log('DOM loaded, fetching header...');
 
-  // Fetch header from .inc file (Live Server won't inject into non-HTML files)
-  fetch('header.inc')
+  // Fetch header from .inc file (use absolute path from root)
+  fetch('/html/header.inc')
     .then(response => {
       if (!response.ok) throw new Error('Header file not found!');
       return response.text();
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // 2. Load footer if placeholder exists
   const footerPlaceholder = document.getElementById('footer-placeholder');
   if (footerPlaceholder) {
-    fetch('../html/footer.html')
+    fetch('/html/footer.html')
       .then(response => {
         if (!response.ok) throw new Error('Footer file not found!');
         return response.text();
