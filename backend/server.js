@@ -26,7 +26,7 @@ const corsOptions = {
       'http://127.0.0.1:3000',
       'http://localhost:5500',
       'http://127.0.0.1:5500',
-      process.env.FRONTEND_URL, // Add your production URL in .env file
+      process.env.FRONTEND_URL,
       // Production domains:
       'https://goldenlaneresources.com',
       'https://www.goldenlaneresources.com',
@@ -34,11 +34,17 @@ const corsOptions = {
       'http://www.goldenlaneresources.com'
     ].filter(Boolean); // Remove undefined values
     
+    // Log all CORS requests for debugging
+    console.log(`CORS request from origin: ${origin}`);
+    console.log(`Allowed origins:`, allowedOrigins);
+    
     if (allowedOrigins.indexOf(origin) !== -1) {
+      console.log(`✓ CORS allowed for: ${origin}`);
       callback(null, true);
     } else {
       // Log rejected origins for debugging
-      console.log(`CORS blocked origin: ${origin}`);
+      console.log(`✗ CORS blocked origin: ${origin}`);
+      console.log(`Make sure to add this origin to allowedOrigins in server.js`);
       callback(new Error('Not allowed by CORS'));
     }
   },
