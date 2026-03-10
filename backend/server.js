@@ -9,29 +9,40 @@ const { body, validationResult } = require("express-validator");
 
 const app = express();
 
+// ✅ FIX 1: Trust proxy - Required when running behind Nginx/Apache/Cloudflare
+// Without this, express-rate-limit sees the proxy IP, not the real client IP
+app.set('trust proxy', 1);
+
 // Security Headers
 app.use(helmet({
-  contentSecurityPolicy: false, // Disable for now to allow inline styles in emails
+  contentSecurityPolicy: false,
   crossOriginEmbedderPolicy: false
 }));
 
-// CORS Configuration - SIMPLIFIED FOR GOLDENLANE
-// Allow goldenlaneresources.com and localhost
+// CORS Configuration
 const corsOptions = {
   origin: function (origin, callback) {
     console.log(`\n[CORS] Request from: ${origin || 'no-origin'}`);
     
-    // Always allow requests with no origin (like mobile apps, Postman)
+    // Always allow requests with no origin (mobile apps, Postman, server-side)
     if (!origin) {
       console.log('[CORS] ✓ Allowed: No origin');
       return callback(null, true);
     }
+
+    // ✅ FIX 2: Explicit allowed origins list (more reliable than .includes())
+    const allowedOrigins = [
+      'https://goldenlaneresources.com',
+      'https://www.goldenlaneresources.com',
+      'http://goldenlaneresources.com',      // in case HTTP redirects aren't fully set up
+      'http://www.goldenlaneresources.com',
+      'http://localhost:3000',
+      'http://localhost:5500',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:5500',
+    ];
     
-    // Check if origin contains goldenlaneresources.com OR localhost
-    const isGoldenlane = origin.includes('goldenlaneresources.com');
-    const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1');
-    
-    if (isGoldenlane || isLocalhost) {
+    if (allowedOrigins.includes(origin)) {
       console.log(`[CORS] ✓ Allowed: ${origin}`);
       callback(null, true);
     } else {
@@ -45,10 +56,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Rate Limiter for Email Endpoint - Prevent Spam
+// ✅ FIX 3: Explicitly handle OPTIONS preflight for /send-email
+// Some proxies/servers strip or block OPTIONS requests
+app.options('/send-email', cors(corsOptions));
+
+// Rate Limiter for Email Endpoint
 const emailLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 3, // Limit each IP to 3 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 3,
   message: {
     success: false,
     message: "Too many form submissions. Please try again in 15 minutes."
@@ -57,10 +72,10 @@ const emailLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// General Rate Limiter for all routes
+// General Rate Limiter
 const generalLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100, // Limit each IP to 100 requests per minute
+  windowMs: 1 * 60 * 1000,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
 });
@@ -83,7 +98,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Verify transporter configuration
 transporter.verify((error, success) => {
   if (error) {
     console.log("Email transporter error:", error);
@@ -95,18 +109,16 @@ transporter.verify((error, success) => {
 // Input Sanitization Helper
 function sanitizeInput(input) {
   if (typeof input !== 'string') return input;
-  // Remove potentially dangerous characters
   return input
-    .replace(/[<>"']/g, '') // Remove HTML/script tags
+    .replace(/[<>"']/g, '')
     .trim()
-    .substring(0, 1000); // Limit length
+    .substring(0, 1000);
 }
 
-// Route for form submission with rate limiting and validation
+// Route for form submission
 app.post("/send-email", 
-  emailLimiter, // Apply rate limiting
+  emailLimiter,
   [
-    // Validation middleware
     body('name')
       .trim()
       .notEmpty().withMessage('Name is required')
@@ -132,18 +144,16 @@ app.post("/send-email",
   ],
   async (req, res) => {
     try {
-      // Check validation results
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ 
           success: false, 
-          message: errors.array()[0].msg // Return first error
+          message: errors.array()[0].msg
         });
       }
 
       const { name, email, company, phone, details } = req.body;
 
-      // Additional sanitization
       const sanitizedData = {
         name: sanitizeInput(name),
         email: email.toLowerCase(),
@@ -152,84 +162,83 @@ app.post("/send-email",
         details: details ? sanitizeInput(details) : ''
       };
 
-    // Email options with sanitized data
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_RECIPIENT || process.env.EMAIL_USER,
-      replyTo: sanitizedData.email,
-      subject: `New Contact Form Submission from ${sanitizedData.company}`,
-      html: `
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-            .header { background: #1e3455; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
-            .content { background: #f7f9fc; padding: 30px; border: 1px solid #e2e8f2; }
-            .field { margin-bottom: 20px; }
-            .label { font-weight: bold; color: #0e1c2f; display: block; margin-bottom: 5px; }
-            .value { color: #4a6080; padding: 10px; background: white; border-radius: 4px; }
-            .footer { background: #0e1c2f; color: #8fa3bc; padding: 15px; text-align: center; font-size: 12px; border-radius: 0 0 5px 5px; }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <div class="header">
-              <h2 style="margin: 0;">📧 New Contact Form Submission</h2>
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_RECIPIENT || process.env.EMAIL_USER,
+        replyTo: sanitizedData.email,
+        subject: `New Contact Form Submission from ${sanitizedData.company}`,
+        html: `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+              .header { background: #1e3455; color: white; padding: 20px; border-radius: 5px 5px 0 0; }
+              .content { background: #f7f9fc; padding: 30px; border: 1px solid #e2e8f2; }
+              .field { margin-bottom: 20px; }
+              .label { font-weight: bold; color: #0e1c2f; display: block; margin-bottom: 5px; }
+              .value { color: #4a6080; padding: 10px; background: white; border-radius: 4px; }
+              .footer { background: #0e1c2f; color: #8fa3bc; padding: 15px; text-align: center; font-size: 12px; border-radius: 0 0 5px 5px; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h2 style="margin: 0;">📧 New Contact Form Submission</h2>
+              </div>
+              <div class="content">
+                <div class="field">
+                  <span class="label">Name:</span>
+                  <div class="value">${sanitizedData.name}</div>
+                </div>
+                <div class="field">
+                  <span class="label">Email:</span>
+                  <div class="value"><a href="mailto:${sanitizedData.email}">${sanitizedData.email}</a></div>
+                </div>
+                <div class="field">
+                  <span class="label">Company:</span>
+                  <div class="value">${sanitizedData.company}</div>
+                </div>
+                ${sanitizedData.phone ? `
+                <div class="field">
+                  <span class="label">Phone:</span>
+                  <div class="value">${sanitizedData.phone}</div>
+                </div>
+                ` : ''}
+                ${sanitizedData.details ? `
+                <div class="field">
+                  <span class="label">Message:</span>
+                  <div class="value">${sanitizedData.details.replace(/\n/g, '<br>')}</div>
+                </div>
+                ` : ''}
+              </div>
+              <div class="footer">
+                Golden Lane Resources - Received on ${new Date().toLocaleString()}
+              </div>
             </div>
-            <div class="content">
-              <div class="field">
-                <span class="label">Name:</span>
-                <div class="value">${sanitizedData.name}</div>
-              </div>
-              <div class="field">
-                <span class="label">Email:</span>
-                <div class="value"><a href="mailto:${sanitizedData.email}">${sanitizedData.email}</a></div>
-              </div>
-              <div class="field">
-                <span class="label">Company:</span>
-                <div class="value">${sanitizedData.company}</div>
-              </div>
-              ${sanitizedData.phone ? `
-              <div class="field">
-                <span class="label">Phone:</span>
-                <div class="value">${sanitizedData.phone}</div>
-              </div>
-              ` : ''}
-              ${sanitizedData.details ? `
-              <div class="field">
-                <span class="label">Message:</span>
-                <div class="value">${sanitizedData.details.replace(/\n/g, '<br>')}</div>
-              </div>
-              ` : ''}
-            </div>
-            <div class="footer">
-              MTI Resource - Received on ${new Date().toLocaleString()}
-            </div>
-          </div>
-        </body>
-        </html>
-      `
-    };
+          </body>
+          </html>
+        `
+      };
 
-    // Send email
-    const info = await transporter.sendMail(mailOptions);
-    console.log(`Email sent successfully: ${info.messageId} from ${sanitizedData.email}`);
-    
-    res.status(200).json({ 
-      success: true, 
-      message: "Email sent successfully! We'll get back to you within 1 working day." 
-    });
+      const info = await transporter.sendMail(mailOptions);
+      console.log(`Email sent successfully: ${info.messageId} from ${sanitizedData.email}`);
+      
+      res.status(200).json({ 
+        success: true, 
+        message: "Email sent successfully! We'll get back to you within 1 working day." 
+      });
 
-  } catch (error) {
-    console.error("Error sending email:", error.message);
-    res.status(500).json({ 
-      success: false, 
-      message: "Failed to send email. Please try again or contact us directly." 
-    });
+    } catch (error) {
+      console.error("Error sending email:", error.message);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to send email. Please try again or contact us directly." 
+      });
+    }
   }
-});
+);
 
 // Health check route
 app.get("/health", (req, res) => {
@@ -241,7 +250,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'html', 'Home.html'));
 });
 
-// Error handling for CORS
+// CORS error handler
 app.use((err, req, res, next) => {
   if (err.message === 'Not allowed by CORS') {
     res.status(403).json({
@@ -261,7 +270,6 @@ app.use((req, res) => {
   });
 });
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`✓ Server running on http://localhost:${PORT}`);

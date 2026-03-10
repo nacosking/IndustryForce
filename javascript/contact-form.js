@@ -51,7 +51,13 @@ document.addEventListener('DOMContentLoaded', function() {
         throw new Error('API endpoint not configured');
       }
 
-      console.log(`Sending request to: ${API_URL}`); // For debugging
+      // Debug logging
+      console.log('=== Contact Form Debug ===');
+      console.log('Current window location:', window.location.href);
+      console.log('Current origin:', window.location.origin);
+      console.log('API URL:', API_URL);
+      console.log('Form data:', formData);
+      console.log('=========================');
 
       // Send to backend API
       const response = await fetch(API_URL, {
@@ -62,6 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
         body: JSON.stringify(formData),
         timeout: window.AppConfig.form.timeoutDuration
       });
+      
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
 
       const result = await response.json();
 
