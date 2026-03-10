@@ -141,6 +141,14 @@
   background: var(--bg-alt);
 }
 
+.visual-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 .visual-panel svg {
   position: absolute; 
   inset: 0; 

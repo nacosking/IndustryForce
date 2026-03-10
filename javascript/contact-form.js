@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const btnText = document.getElementById('btnText');
   const formStatus = document.getElementById('formStatus');
 
+  // Check if config is loaded
+  if (typeof window.AppConfig === 'undefined') {
+    console.error('Configuration not loaded. Make sure config.js is included before contact-form.js');
+    return;
+  }
+
   // Only run if contact form exists on the page
   if (!form) return;
 
@@ -38,13 +44,23 @@ document.addEventListener('DOMContentLoaded', function() {
     btnText.textContent = 'Sending...';
 
     try {
+      // Get API endpoint from configuration (no hardcoded values)
+      const API_URL = window.AppConfig.getApiEndpoint('sendEmail');
+      
+      if (!API_URL) {
+        throw new Error('API endpoint not configured');
+      }
+
+      console.log(`Sending request to: ${API_URL}`); // For debugging
+
       // Send to backend API
-      const response = await fetch('http://localhost:3000/send-email', {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        timeout: window.AppConfig.form.timeoutDuration
       });
 
       const result = await response.json();
@@ -80,11 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
       formStatus.style.border = '1px solid #f5c6cb';
     }
 
-    // Auto-hide after 5 seconds for success messages
+    // Auto-hide after configured duration for success messages
     if (type === 'success') {
       setTimeout(() => {
         formStatus.style.display = 'none';
-      }, 5000);
+      }, window.AppConfig.form.successMessageDuration);
     }
   }
 });

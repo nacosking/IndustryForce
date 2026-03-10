@@ -95,9 +95,94 @@ PORT=3000
 
 ## Production Deployment
 
-For production, you should:
+### Important: Environment-Specific Configuration
 
-1. Use environment variables from your hosting provider
+The code now automatically detects whether it's running locally or in production:
+- **Local**: Uses `http://localhost:3000/send-email`
+- **Production**: Uses `/send-email` (same domain as frontend)
+
+### Deployment Steps
+
+1. **Set Environment Variables on your hosting platform:**
+   ```env
+   EMAIL_USER=youremail@gmail.com
+   EMAIL_PASSWORD=your-16-character-app-password
+   EMAIL_RECIPIENT=youremail@gmail.com
+   PORT=3000
+   FRONTEND_URL=https://yourdomain.com
+   ```
+
+2. **Update Backend CORS in server.js:**
+   Add your production domain to the allowed origins list (around line 25):
+   ```javascript
+   const allowedOrigins = [
+     'http://localhost:3000',
+     'http://127.0.0.1:3000',
+     'https://yourdomain.com',          // Add your domain
+     'https://www.yourdomain.com',      // Add www version if needed
+     process.env.FRONTEND_URL,
+   ].filter(Boolean);
+   ```
+
+3. **Deploy Backend:**
+   - Deploy to platforms like Render, Railway, Heroku, or Vercel
+   - Make sure all environment variables are set
+   - Note your backend URL (e.g., `https://your-backend.onrender.com`)
+
+4. **Deploy Frontend:**
+   - Deploy HTML/CSS/JS files to Netlify, Vercel, GitHub Pages, or any static host
+   - No changes needed - it auto-detects the environment
+
+5. **If Frontend and Backend are on Different Domains:**
+   Update contact-form.js line 41 to use your backend URL:
+   ```javascript
+   const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+     ? 'http://localhost:3000/send-email'
+     : 'https://your-backend.onrender.com/send-email';  // Your backend URL
+   ```
+
+### Common Deployment Platforms
+
+#### Backend Deployment Options:
+- **Render.com** (Recommended - Free tier available)
+- **Railway.app** (Easy deployment)
+- **Heroku** (Paid plans)
+- **Vercel** (For serverless functions)
+
+#### Frontend Deployment Options:
+- **Netlify** (Drag & drop deployment)
+- **Vercel** (Git integration)
+- **GitHub Pages** (Free static hosting)
+- **Cloudflare Pages**
+
+### Testing After Deployment
+
+1. Visit your deployed website
+2. Open browser DevTools (F12) → Console tab
+3. Submit the contact form
+4. Check for any errors in the console
+5. Verify email arrives in your inbox
+
+### Common Deployment Issues
+
+**CORS Error:**
+- Add your production domain to CORS allowedOrigins in server.js
+- Set FRONTEND_URL environment variable on your server
+
+**ERR_CONNECTION_REFUSED:**
+- Backend server not running or wrong URL
+- Update API_URL in contact-form.js to point to deployed backend
+
+**Failed to fetch:**
+- Check if backend is deployed and accessible
+- Verify CORS is configured correctly
+- Check backend logs for errors
+
+## Security Notes
+
+1. **Never commit .env file to Git** - it contains sensitive credentials
+2. Store environment variables in your hosting platform's dashboard
+3. Use strong App Passwords and rotate them periodically
 2. Change the fetch URL in Contact.html from `localhost:3000` to your production API URL
 3. Enable HTTPS
 4. Consider using a dedicated email service like SendGrid or Mailgun for better deliverability

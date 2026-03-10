@@ -25,13 +25,20 @@ const corsOptions = {
       'http://localhost:3000',
       'http://127.0.0.1:3000',
       'http://localhost:5500',
-      'http://127.0.0.1:5500'
-      // Add your production domain here when deploying
-    ];
+      'http://127.0.0.1:5500',
+      process.env.FRONTEND_URL, // Add your production URL in .env file
+      // Production domains:
+      'https://goldenlaneresources.com',
+      'https://www.goldenlaneresources.com',
+      'http://goldenlaneresources.com',
+      'http://www.goldenlaneresources.com'
+    ].filter(Boolean); // Remove undefined values
     
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      // Log rejected origins for debugging
+      console.log(`CORS blocked origin: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
