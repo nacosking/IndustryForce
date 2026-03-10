@@ -15,36 +15,27 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false
 }));
 
-// CORS Configuration - only allow specific origins
+// CORS Configuration - SIMPLIFIED FOR GOLDENLANE
+// Allow goldenlaneresources.com and localhost
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
+    console.log(`\n[CORS] Request from: ${origin || 'no-origin'}`);
     
-    const allowedOrigins = [
-      'http://localhost:3000',
-      'http://127.0.0.1:3000',
-      'http://localhost:5500',
-      'http://127.0.0.1:5500',
-      process.env.FRONTEND_URL,
-      // Production domains:
-      'https://goldenlaneresources.com',
-      'https://www.goldenlaneresources.com',
-      'http://goldenlaneresources.com',
-      'http://www.goldenlaneresources.com'
-    ].filter(Boolean); // Remove undefined values
+    // Always allow requests with no origin (like mobile apps, Postman)
+    if (!origin) {
+      console.log('[CORS] ✓ Allowed: No origin');
+      return callback(null, true);
+    }
     
-    // Log all CORS requests for debugging
-    console.log(`CORS request from origin: ${origin}`);
-    console.log(`Allowed origins:`, allowedOrigins);
+    // Check if origin contains goldenlaneresources.com OR localhost
+    const isGoldenlane = origin.includes('goldenlaneresources.com');
+    const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1');
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      console.log(`✓ CORS allowed for: ${origin}`);
+    if (isGoldenlane || isLocalhost) {
+      console.log(`[CORS] ✓ Allowed: ${origin}`);
       callback(null, true);
     } else {
-      // Log rejected origins for debugging
-      console.log(`✗ CORS blocked origin: ${origin}`);
-      console.log(`Make sure to add this origin to allowedOrigins in server.js`);
+      console.log(`[CORS] ✗ Blocked: ${origin}`);
       callback(new Error('Not allowed by CORS'));
     }
   },
