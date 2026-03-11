@@ -4,6 +4,9 @@
 # Node modules
 node_modules/
 
+# Uploads (temporary CV files)
+uploads/
+
 # Logs
 *.log
 

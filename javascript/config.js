@@ -19,6 +19,7 @@ const config = {
     // API endpoints
     endpoints: {
       sendEmail: '/send-email',
+      applyJob: '/apply-job',
       health: '/health'
     }
   },
