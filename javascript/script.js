@@ -152,3 +152,82 @@ function createFloatingButton() {
   
   document.body.appendChild(floatingBtn);
 }
+
+/**
+ * Contact Page Functions
+ * Tab switching and file upload functionality for Contact.html
+ */
+
+/* ── Tab switching ── */
+function switchTab(tab) {
+  const tabs    = ['enquiry', 'apply'];
+  const isApply = tab === 'apply';
+
+  tabs.forEach(t => {
+    const btn   = document.getElementById('tab-' + t);
+    const panel = document.getElementById('panel-' + t);
+    const active = t === tab;
+    btn.classList.toggle('form-tab--active', active);
+    btn.setAttribute('aria-selected', active);
+    panel.style.display = active ? '' : 'none';
+  });
+}
+
+/* ── File upload ── */
+function handleFileSelect(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const maxBytes = 5 * 1024 * 1024;
+  if (file.size > maxBytes) {
+    alert('File is too large. Please upload a file under 5 MB.');
+    input.value = '';
+    return;
+  }
+
+  document.getElementById('uploadZone').classList.add('upload-zone--has-file');
+  document.getElementById('uploadFileName').textContent = file.name;
+  document.getElementById('uploadFileInfo').style.display = 'flex';
+  document.getElementById('uploadIconWrap').style.display = 'none';
+  document.getElementById('uploadPrimary').style.display  = 'none';
+}
+
+function removeFile() {
+  const input = document.getElementById('cvFile');
+  input.value = '';
+  document.getElementById('uploadZone').classList.remove('upload-zone--has-file');
+  document.getElementById('uploadFileInfo').style.display = 'none';
+  document.getElementById('uploadIconWrap').style.display = '';
+  document.getElementById('uploadPrimary').style.display  = '';
+}
+
+/* ── Drag-and-drop initialization ── */
+document.addEventListener('DOMContentLoaded', function() {
+  const zone = document.getElementById('uploadZone');
+  if (zone) {
+    zone.addEventListener('dragover', e => { 
+      e.preventDefault(); 
+      zone.classList.add('upload-zone--drag'); 
+    });
+    
+    zone.addEventListener('dragleave', () => {
+      zone.classList.remove('upload-zone--drag');
+    });
+    
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('upload-zone--drag');
+      const dt = e.dataTransfer;
+      if (dt.files.length) {
+        const input = document.getElementById('cvFile');
+        // DataTransfer trick to assign dropped file
+        try {
+          input.files = dt.files;
+        } catch(err) {
+          // fallback: just show the name
+        }
+        handleFileSelect({ files: dt.files });
+      }
+    });
+  }
+});

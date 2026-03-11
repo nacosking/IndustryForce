@@ -202,6 +202,66 @@
 
 
 /* ══════════════════════════════════════════
+   FORM TABS
+   ══════════════════════════════════════════ */
+
+.form-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid hsl(var(--border));
+  margin-bottom: 0;
+  /* Sits above the card-header — card padding handles spacing */
+  margin: -1.75rem -1.75rem 0;          /* offset card padding */
+  padding: 0 1.75rem;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  background: hsl(var(--muted, 210 20% 98%));
+}
+
+.form-tab {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 1rem 1.25rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 150ms, border-color 150ms;
+  white-space: nowrap;
+}
+
+.form-tab svg {
+  opacity: 0.55;
+  transition: opacity 150ms;
+}
+
+.form-tab:hover {
+  color: hsl(var(--foreground));
+}
+
+.form-tab--active {
+  color: hsl(var(--accent));
+  border-bottom-color: hsl(var(--accent));
+}
+
+.form-tab--active svg {
+  opacity: 1;
+  color: hsl(var(--accent));
+}
+
+/* Push card-header down a bit when tabs are present */
+.card .card-header {
+  padding-top: 1.75rem;
+}
+
+
+/* ══════════════════════════════════════════
    CONTACT FORM (uses .card and form components)
    ══════════════════════════════════════════ */
 
@@ -214,6 +274,111 @@
 /* Form-specific submit button */
 .form-submit {
   align-self: flex-start;
+}
+
+
+/* ══════════════════════════════════════════
+   FILE UPLOAD ZONE
+   ══════════════════════════════════════════ */
+
+.upload-zone {
+  border: 1.5px dashed hsl(var(--border));
+  border-radius: 10px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  background: hsl(var(--muted, 210 20% 98%));
+  transition: border-color 150ms, background 150ms;
+  outline: none;
+}
+
+.upload-zone:hover,
+.upload-zone:focus-visible {
+  border-color: hsl(var(--accent));
+  background: hsl(var(--accent) / 0.03);
+}
+
+.upload-zone--drag {
+  border-color: hsl(var(--accent));
+  background: hsl(var(--accent) / 0.06);
+}
+
+.upload-zone--has-file {
+  border-style: solid;
+  border-color: hsl(var(--accent) / 0.4);
+  background: hsl(var(--accent) / 0.03);
+}
+
+.upload-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.upload-primary {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+  margin-bottom: 0.3rem;
+}
+
+.upload-link {
+  color: hsl(var(--accent));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.upload-hint {
+  font-size: 0.72rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* File selected info row */
+.upload-file-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  padding: 0.55rem 0.85rem;
+  background: hsl(var(--accent) / 0.06);
+  border: 1px solid hsl(var(--accent) / 0.18);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.upload-file-info svg {
+  color: hsl(var(--accent));
+  flex-shrink: 0;
+}
+
+.upload-file-info span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.upload-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: none;
+  background: hsl(var(--muted-foreground) / 0.12);
+  color: hsl(var(--muted-foreground));
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 130ms, color 130ms;
+}
+
+.upload-remove:hover {
+  background: hsl(0 70% 55% / 0.12);
+  color: hsl(0 70% 45%);
 }
 
 

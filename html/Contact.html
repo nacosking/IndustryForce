@@ -81,7 +81,6 @@
           </div>
 
           <!-- Stats row -->
-          <!-- Note: Update these figures to match your real stats -->
           <div class="hero-stats">
 
             <div class="hero-stat-item">
@@ -104,99 +103,189 @@
 
           <!-- Form card -->
           <div class="card">
-            <div class="card-header">
-              <h2 class="card-title">Send an Enquiry</h2>
-              <p class="card-subtitle">Fields marked <span class="req">*</span> are required.</p>
+
+            <!-- Tab Switcher -->
+            <div class="form-tabs" role="tablist" aria-label="Form type">
+              <button
+                class="form-tab form-tab--active"
+                id="tab-enquiry"
+                role="tab"
+                aria-selected="true"
+                aria-controls="panel-enquiry"
+                type="button"
+                onclick="switchTab('enquiry')"
+              >
+                <svg viewBox="0 0 24 24" width="15" height="15"><use href="../asset/icon/icons.svg#icon-send"/></svg>
+                Send an Enquiry
+              </button>
+              <button
+                class="form-tab"
+                id="tab-apply"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-apply"
+                type="button"
+                onclick="switchTab('apply')"
+              >
+                <svg viewBox="0 0 24 24" width="15" height="15"><use href="../asset/icon/icons.svg#icon-team"/></svg>
+                Apply for a Job
+              </button>
             </div>
 
-            <form class="contact-form" id="contactForm" novalidate>
+            <!-- ── ENQUIRY PANEL ── -->
+            <div id="panel-enquiry" role="tabpanel" aria-labelledby="tab-enquiry">
+              <div class="card-header">
+                <h2 class="card-title">Send an Enquiry</h2>
+                <p class="card-subtitle">Fields marked <span class="req">*</span> are required.</p>
+              </div>
 
-              <!-- Name + Email -->
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label" for="name">Your Name <span class="req">*</span></label>
-                  <input
-                    id="name"
-                    class="form-input"
-                    type="text"
-                    name="name"
-                    placeholder="Full name"
-                    maxlength="100"
-                    required
-                  >
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="email">Email <span class="req">*</span></label>
-                  <div class="input-wrapper has-icon">
-                    <svg class="input-icon" viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-mail"/></svg>
-                    <input
-                      id="email"
-                      class="form-input"
-                      type="email"
-                      name="email"
-                      placeholder="you@company.com"
-                      maxlength="255"
-                      required
-                    >
+              <form class="contact-form" id="contactForm" novalidate>
+
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="name">Your Name <span class="req">*</span></label>
+                    <input id="name" class="form-input" type="text" name="name" placeholder="Full name" maxlength="100" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="email">Email <span class="req">*</span></label>
+                    <div class="input-wrapper has-icon">
+                      <svg class="input-icon" viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-mail"/></svg>
+                      <input id="email" class="form-input" type="email" name="email" placeholder="you@company.com" maxlength="255" required>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Company + Phone -->
-              <div class="form-row form-row-2">
-                <div class="form-group">
-                  <label class="form-label" for="company">Company Name <span class="req">*</span></label>
-                  <input
-                    id="company"
-                    class="form-input"
-                    type="text"
-                    name="company"
-                    placeholder="Your company"
-                    maxlength="100"
-                    required
-                  >
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="phone">Phone</label>
-                  <div class="input-wrapper has-icon">
-                    <svg class="input-icon" viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-phone"/></svg>
-                    <input
-                      id="phone"
-                      class="form-input"
-                      type="tel"
-                      name="phone"
-                      placeholder="+44..."
-                      maxlength="20"
-                    >
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="company">Company Name <span class="req">*</span></label>
+                    <input id="company" class="form-input" type="text" name="company" placeholder="Your company" maxlength="100" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Phone</label>
+                    <div class="input-wrapper has-icon">
+                      <svg class="input-icon" viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-phone"/></svg>
+                      <input id="phone" class="form-input" type="tel" name="phone" placeholder="+44..." maxlength="20">
+                    </div>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="details">About Your Company</label>
+                  <textarea id="details" class="form-textarea" name="details" rows="5" placeholder="Tell us about the roles you need filled, your industry, timeline, or any other requirements…" maxlength="1000"></textarea>
+                </div>
+
+                <hr class="form-divider">
+                <div id="formStatus" style="display: none; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"></div>
+
+                <button type="submit" class="btn-primary form-submit" id="submitBtn">
+                  <svg viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-send"/></svg>
+                  <span id="btnText">Submit Enquiry</span>
+                </button>
+
+              </form>
+            </div>
+
+            <!-- ── APPLY PANEL ── -->
+            <div id="panel-apply" role="tabpanel" aria-labelledby="tab-apply" style="display:none;">
+              <div class="card-header">
+                <h2 class="card-title">Apply for a Job</h2>
+                <p class="card-subtitle">Fields marked <span class="req">*</span> are required.</p>
               </div>
 
-              <!-- About -->
-              <div class="form-group">
-                <label class="form-label" for="details">About Your Company</label>
-                <textarea
-                  id="details"
-                  class="form-textarea"
-                  name="details"
-                  rows="5"
-                  placeholder="Tell us about the roles you need filled, your industry, timeline, or any other requirements…"
-                  maxlength="1000"
-                ></textarea>
-              </div>
+              <form class="contact-form" id="applyForm" novalidate>
 
-              <hr class="form-divider">
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="apply-name">Full Name <span class="req">*</span></label>
+                    <input id="apply-name" class="form-input" type="text" name="apply-name" placeholder="Your full name" maxlength="100" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="apply-email">Email <span class="req">*</span></label>
+                    <div class="input-wrapper has-icon">
+                      <svg class="input-icon" viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-mail"/></svg>
+                      <input id="apply-email" class="form-input" type="email" name="apply-email" placeholder="you@email.com" maxlength="255" required>
+                    </div>
+                  </div>
+                </div>
 
-              <!-- Status message -->
-              <div id="formStatus" style="display: none; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"></div>
+                <div class="form-row form-row-2">
+                  <div class="form-group">
+                    <label class="form-label" for="apply-phone">Phone <span class="req">*</span></label>
+                    <div class="input-wrapper has-icon">
+                      <svg class="input-icon" viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-phone"/></svg>
+                      <input id="apply-phone" class="form-input" type="tel" name="apply-phone" placeholder="+44..." maxlength="20" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="apply-role">Role Applying For <span class="req">*</span></label>
+                    <input id="apply-role" class="form-input" type="text" name="apply-role" placeholder="e.g. CNC Machinist" maxlength="100" required>
+                  </div>
+                </div>
 
-              <button type="submit" class="btn-primary form-submit" id="submitBtn">
-                <svg viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-send"/></svg>
-                <span id="btnText">Submit Enquiry</span>
-              </button>
+                <div class="form-group">
+                  <label class="form-label" for="apply-experience">Relevant Experience</label>
+                  <textarea id="apply-experience" class="form-textarea" name="apply-experience" rows="4" placeholder="Briefly describe your experience, skills, and availability…" maxlength="1000"></textarea>
+                </div>
 
-            </form>
+                <!-- CV / Document Upload -->
+                <div class="form-group">
+                  <label class="form-label">CV / Resume <span class="req">*</span></label>
+                  <div
+                    class="upload-zone"
+                    id="uploadZone"
+                    onclick="document.getElementById('cvFile').click()"
+                    onkeydown="if(event.key==='Enter'||event.key===' ')document.getElementById('cvFile').click()"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Upload CV or resume"
+                  >
+                    <input
+                      type="file"
+                      id="cvFile"
+                      name="cvFile"
+                      accept=".pdf,.doc,.docx"
+                      style="display:none;"
+                      onchange="handleFileSelect(this)"
+                    >
+                    <div class="upload-icon-wrap" id="uploadIconWrap">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="28" height="28">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                      </svg>
+                    </div>
+                    <p class="upload-primary" id="uploadPrimary">Drop your CV here or <span class="upload-link">browse</span></p>
+                    <p class="upload-hint">PDF, DOC or DOCX &middot; Max 5 MB</p>
+                  </div>
+
+                  <!-- File selected state -->
+                  <div class="upload-file-info" id="uploadFileInfo" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    <span id="uploadFileName">filename.pdf</span>
+                    <button type="button" class="upload-remove" onclick="removeFile()" aria-label="Remove file">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <hr class="form-divider">
+                <div id="applyFormStatus" style="display: none; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"></div>
+
+                <button type="submit" class="btn-primary form-submit" id="applySubmitBtn">
+                  <svg viewBox="0 0 24 24"><use href="../asset/icon/icons.svg#icon-send"/></svg>
+                  <span id="applyBtnText">Submit Application</span>
+                </button>
+
+              </form>
+            </div>
+
           </div>
+          <!-- /Form card -->
 
           <!-- Sidebar -->
           <aside class="contact-sidebar">
@@ -208,7 +297,6 @@
             </div>
 
             <!-- Direct contact card -->
-            <!-- Note: Update email, phone, and office as needed -->
             <div class="contact-card">
               <h3 class="contact-card-title">Get in Touch Directly</h3>
               <div class="contact-details">
@@ -252,7 +340,7 @@
               </div>
             </div>
 
-            <!-- WhatsApp — update href with your real number -->
+            <!-- WhatsApp -->
             <a
               class="btn-whatsapp"
               href="https://wa.me/+60122217822"
@@ -274,5 +362,6 @@
     <div id="footer-placeholder"></div>
 
   </div>
+
 </body>
 </html>
