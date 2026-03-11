@@ -33,6 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
       })
       .catch(err => console.error('Error loading footer:', err));
   }
+
+  // 3. Add floating contact button
+  createFloatingButton();
 });
 
 /**
@@ -127,4 +130,25 @@ function setActiveNavLink() {
       link.classList.add('active');
     }
   });
+}
+
+/**
+ * Create Floating WhatsApp Button
+ * Adds a persistent WhatsApp button in the bottom right corner on all pages
+ */
+function createFloatingButton() {
+  const floatingBtn = document.createElement('a');
+  floatingBtn.href = 'https://wa.me/+60122217822';
+  floatingBtn.target = '_blank';
+  floatingBtn.rel = 'noopener noreferrer';
+  floatingBtn.className = 'floating-contact-btn';
+  floatingBtn.setAttribute('aria-label', 'Chat on WhatsApp');
+  floatingBtn.innerHTML = `
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <use href="../asset/icon/icons.svg#icon-message"></use>
+    </svg>
+    <span>WhatsApp</span>
+  `;
+  
+  document.body.appendChild(floatingBtn);
 }
