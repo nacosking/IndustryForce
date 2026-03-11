@@ -3,7 +3,7 @@
 
     <!-- Logo -->
     <a class="site-logo" href="/html/Home.html">
-      MTI<span class="accent-text">Resource</span>
+      MTI<span class="accent-text">Resources</span>
     </a>
 
     <!-- Desktop Navigation (hidden below 1024px) -->
