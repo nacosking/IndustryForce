@@ -514,6 +514,34 @@
    RESPONSIVE BREAKPOINTS
    ══════════════════════════════════════════ */
 
+/* Mobile: Center and constrain grid items */
+@media (max-width: 1023px) {
+  .contact-grid {
+    justify-items: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  
+  .contact-grid > * {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 72px 16px 96px;
+  }
+  
+  .form-tabs {
+    margin: -1.75rem -1.25rem 0;
+    padding: 0 1.25rem;
+  }
+  
+  .card {
+    padding: 1.25rem;
+  }
+}
+
 @media (min-width: 640px) {
   .contact-hero-contact {
     padding: 112px 32px 96px;

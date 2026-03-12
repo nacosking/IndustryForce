@@ -217,6 +217,7 @@
 .node-desc {
   font-size: 0.84rem; color: var(--text-sub); line-height: 1.7;
   text-align: justify;
+  margin-right: 0.5rem;
 }
 
 /* right-aligned card text tweaks */
@@ -224,6 +225,8 @@
 .roadmap-node:nth-child(odd) .node-card .node-title,
 .roadmap-node:nth-child(odd) .node-card .node-desc {
   text-align: right;
+  margin-right: 0;
+  margin-left: 0.5rem;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -286,14 +289,14 @@
   .roadmap-spine { left: 28px; transform: none; top: 0; bottom: 0; }
   .roadmap-node { grid-template-columns: 60px 1fr; align-items: center; }
   .roadmap-node:nth-child(odd)  .node-card,
-  .roadmap-node:nth-child(even) .node-card { grid-column: 2; grid-row: 1; text-align: left; padding-left: 1.5rem; padding-right: 0; }
+  .roadmap-node:nth-child(even) .node-card { grid-column: 2; grid-row: 1; text-align: left; padding-left: 1.5rem; padding-right: 1.5rem; }
   .roadmap-node:nth-child(odd)  .node-center,
   .roadmap-node:nth-child(even) .node-center { grid-column: 1; grid-row: 1; padding-top: 0; }
   .roadmap-node:nth-child(odd)  .node-empty,
   .roadmap-node:nth-child(even) .node-empty { display: none; }
   .roadmap-node:nth-child(odd) .node-card .node-step,
   .roadmap-node:nth-child(odd) .node-card .node-title,
-  .roadmap-node:nth-child(odd) .node-card .node-desc { text-align: left; }
+  .roadmap-node:nth-child(odd) .node-card .node-desc { text-align: left; margin-left: 0; margin-right: 0; }
   .steps-bar { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
   .steps-bar-left { flex-direction: column; gap: 0.2rem; }
 }
